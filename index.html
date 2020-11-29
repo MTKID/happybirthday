@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+      <head>
+        <meta charset="utf-8">
+        <link href="index.css" rel="stylesheet">
+         </head>
+          <body>
+            <div class="element js-fadein">
+            <div class="home-content wrapper">
+              <h2 class="page-title">Dear Yuka</h2>
+
+              <div class="container">
+                <a href="main.html">
+                <div class="item">早速問題とく？</div>
+              </a></div>
+                <div class="container">
+                  <a href="#">
+                  <div class="item">それとも動画見る？</div>
+                  </a>
+                </div>
+          </div>
+          </div>
+<script>
+        /* 到達したら要素を表示させる */
+function showElementAnimation() {
+
+  var element = document.getElementsByClassName('js-fadein');
+  if(!element) return; // 要素がなかったら処理をキャンセル
+
+  var showTiming = window.innerHeight > 768 ? 200 : 80; // 要素が出てくるタイミングはここで調整
+  var scrollY = window.pageYOffset; //スクロール量を取得
+  var windowH = window.innerHeight; //ブラウザウィンドウのビューポート(viewport)の高さを取得
+
+  for(var i=0;i<element.length;i++) {
+    var elemClientRect = element[i].getBoundingClientRect();
+    var elemY = scrollY + elemClientRect.top;
+    if(scrollY + windowH - showTiming > elemY) {
+      element[i].classList.add('is-show');
+    } else if(scrollY + windowH < elemY) {
+    // 上にスクロールして再度非表示にする場合はこちらを記述
+      element[i].classList.remove('is-show');
+    }
+  }
+}
+showElementAnimation();
+window.addEventListener('scroll', showElementAnimation);
+</script>
+</body>
+
+
+
+</html>
